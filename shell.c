@@ -41,11 +41,11 @@ int main(__attribute__((unused)) int argc, char **argv)
 			continue;
 		}
 		else
-		{
 			st = run_cmd(cmd, input, counter, argv);
 
-		}
 		free_all(cmd, input);
+		if (!isatty(STDIN_FILENO))
+			exit(st);
 	}
 	return (statue);
 }
@@ -89,7 +89,6 @@ int check_builtin(char **cmd)
 void handle_sig(int sig)
 {
 	(void)sig;
-	fflush(stdout);
-	PRINTER("$\n");
+	PRINTER("\n");
 	exit(2);
 }

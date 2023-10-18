@@ -153,7 +153,7 @@ int echo_cmd(char **cmd, int er)
 
 	}
 	else
-		return (execute_cmd(cmd));
+		execute_cmd(cmd);
 
 	return (1);
 }
