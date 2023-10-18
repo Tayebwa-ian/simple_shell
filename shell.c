@@ -21,7 +21,7 @@ int main(__attribute__((unused)) int argc, char **argv)
 		if (isatty(STDIN_FILENO))
 			prompt();
 		input = _getline(n, 0);
-		if (input[0] == '\0')
+		if (input[0] == '\0' || input == NULL)
 			continue;
 		history(input);
 		ch = get_delim2(input);
@@ -88,6 +88,8 @@ int check_builtin(char **cmd)
  */
 void handle_sig(int sig)
 {
-	if (sig == SIGINT)
-		PRINTER("\n$ ");
+	(void)sig;
+	fflush(stdout);
+	PRINTER("$\n");
+	exit(2);
 }
